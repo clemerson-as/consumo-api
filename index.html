@@ -2,32 +2,33 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Consumo de API</title>
+  <title>Consumo da API DummyJSON</title>
 </head>
 <body>
-
-  <h1>Dados do Usuário</h1>
-  <div id="resultado"></div>
+  <h1>Dados do Usuário Michael Williams</h1>
+  <div id="usuario"></div>
 
   <script>
+    // Consumindo a API
     fetch('https://dummyjson.com/user/2')
       .then(response => response.json())
       .then(data => {
-        document.getElementById("resultado").innerHTML = `
+        // Monta o HTML com os dados que você quer exibir
+        document.getElementById("usuario").innerHTML = `
           <p><strong>Nome:</strong> ${data.firstName} ${data.lastName}</p>
           <p><strong>Idade:</strong> ${data.age}</p>
+          <p><strong>Gênero:</strong> ${data.gender}</p>
           <p><strong>Email:</strong> ${data.email}</p>
           <p><strong>Telefone:</strong> ${data.phone}</p>
           <p><strong>Empresa:</strong> ${data.company.name}</p>
           <p><strong>Cargo:</strong> ${data.company.title}</p>
           <p><strong>Função:</strong> ${data.role}</p>
+          <p><strong>Universidade:</strong> ${data.university}</p>
+          <p><strong>Carteira de Crypto:</strong> ${data.crypto.coin} - ${data.crypto.wallet}</p>
+          <img src="${data.image}" alt="Foto do Usuário">
         `;
       })
-      .catch(error => {
-        document.getElementById("resultado").innerHTML = "Erro ao carregar dados.";
-        console.error(error);
-      });
+      .catch(error => console.error("Erro ao consumir API:", error));
   </script>
-
 </body>
 </html>
